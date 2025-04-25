@@ -4,7 +4,7 @@ from watchlist_app.models import Movie
 from watchlist_app.api.serializers import MovieSerializer
 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def movie_list(request):
     if request.method == 'GET':
         movies = Movie.objects.all()

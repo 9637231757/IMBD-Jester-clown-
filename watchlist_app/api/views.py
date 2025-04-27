@@ -34,7 +34,7 @@ def movie_details(request, pk):
             serializer.save()
             return Response(request.data)
         else:
-            return Response(request.errors)
+            return Response(request.errors, status=status.HTTP_400_BAD_REQUEST)
     
     if request.method == 'DELETE':    
         movie = Movie.objects.get(pk=pk)

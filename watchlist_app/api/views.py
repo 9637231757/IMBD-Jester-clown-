@@ -23,7 +23,11 @@ def movie_list(request):
 @api_view(['GET','PUT','DELETE'])
 def movie_details(request, pk):
     if request.method == 'GET':
-        movie = Movie.objects.get(pk=pk) 
+        try:
+            movie = Movie.objects.get(pk=pk) 
+        except Movie.DoesNotExist:
+            return Response({'Error':'Movie not found'}, status=status.HTTP_404_NOT_FOUND)
+            
         serilaizer = MovieSerializer(movie)
         return Response(serilaizer.data)
     

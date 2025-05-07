@@ -1,7 +1,7 @@
 """from django.shortcuts import render
 from watchlist_app.models import Movie
 from django.http import JsonResponse
-# Create your views here.
+# Create your views here in views.py
 
 def movie_list(request):
     movies = Movie.object.all()

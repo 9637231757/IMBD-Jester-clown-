@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here in models.py
+# Create your models in models.py
 
 class Movie(models.Model):
     name = models.CharField(max_length=50)

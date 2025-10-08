@@ -1,22 +1,28 @@
 from rest_framework import serializers
 from watchlist_app.models import WatchList, StreamPlatform
 
+
 class StreamPlatformSerializer(serializers.ModelSerializer):
     
     class Meta:
         
-        model = WatchList
+        model = StreamPlatform
         fields = "__all__" 
+     
+        
         
 class WatchListSerializer(serializers.ModelSerializer):
     len_name = serializers.SerializerMethodField()
     
     class Meta:
         
-        model = StreamPlatform
+        model = WatchList
         fields = "__all__" 
-        
-    
+   
+    def get_len_name(self, obj):
+        return len(obj.title)     
+  
+  
   
   
 """class MovieSerializer(serializers.Serializer):

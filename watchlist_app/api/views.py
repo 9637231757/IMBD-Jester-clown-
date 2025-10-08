@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 #from rest_framework.decorators import api_view
 from watchlist_app.models import WatchList, StreamPlatform
-from watchlist_app.api.serializers import WatchListSerializer
+from watchlist_app.api.serializers import WatchListSerializer, StreamPlatformSerializer
 
 
 class StreamPlatformAV(APIView):
@@ -27,7 +27,7 @@ class StreamPlatformAV(APIView):
 class WatchListAV(APIView):
     
     def get(self, request):
-        movies = WishList.objects.all()
+        movies = WatchList.objects.all()
         serializer = WatchListSerializer(movies, many=True)
         return Response(serializer.data)
         

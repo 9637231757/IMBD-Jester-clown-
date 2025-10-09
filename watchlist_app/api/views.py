@@ -67,7 +67,7 @@ class WatchListAV(APIView):
         
 class WatchDetailAV(APIView):
     
-    def get(self, request):  
+    def get(self, request, pk):  
         try:
             movie = WatchList.objects.get(pk=pk) 
         except Movie.DoesNotExist:

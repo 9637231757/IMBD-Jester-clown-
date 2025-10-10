@@ -2,7 +2,22 @@ from rest_framework import serializers
 from watchlist_app.models import WatchList, StreamPlatform
 
 
+class WatchListSerializer(serializers.ModelSerializer):
+    #len_name = serializers.SerializerMethodField()
+        
+    class Meta:
+        
+        model = WatchList
+        fields = "__all__" 
+   
+    def get_len_name(self, obj):
+        return len(obj.title)   
+
+
+
 class StreamPlatformSerializer(serializers.ModelSerializer):
+    watchlist = WatchListSerializer(many=True, read_only=True)
+
     
     class Meta:
         
@@ -11,8 +26,9 @@ class StreamPlatformSerializer(serializers.ModelSerializer):
      
         
         
-class WatchListSerializer(serializers.ModelSerializer):
-    len_name = serializers.SerializerMethodField()
+"""class WatchListSerializer(serializers.ModelSerializer):
+    #len_name = serializers.SerializerMethodField()
+    watchList = WatchListSerializer(many=True, read_only=True)
     
     class Meta:
         
@@ -20,7 +36,7 @@ class WatchListSerializer(serializers.ModelSerializer):
         fields = "__all__" 
    
     def get_len_name(self, obj):
-        return len(obj.title)     
+        return len(obj.title)"""     
   
   
   

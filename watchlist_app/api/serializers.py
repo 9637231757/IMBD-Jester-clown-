@@ -16,8 +16,12 @@ class WatchListSerializer(serializers.ModelSerializer):
 
 
 class StreamPlatformSerializer(serializers.ModelSerializer):
-    watchlist = WatchListSerializer(many=True, read_only=True)
-
+    #watchlist = WatchListSerializer(many=True, read_only=True)
+    watchlist = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='movie-details'
+    )
     
     class Meta:
         

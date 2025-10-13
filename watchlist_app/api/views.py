@@ -1,10 +1,12 @@
 # views.py function based views
 # function based views...
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 #from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
 #from rest_framework.decorators import api_view
 from watchlist_app.models import WatchList, StreamPlatform, Review
 from watchlist_app.api.serializers import ReviewSerializer, WatchListSerializer, StreamPlatformSerializer
@@ -56,6 +58,19 @@ class ReviewList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)"""
 
+class StreamPlatformVS(viewsets.ViewSet):
+    
+    def list(self, request):
+        queryset = StreamPlatform.objects.all()
+        serializer = StreamPlatformSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = StreamPlatform.objects.all()
+        WatchList = get_object_or_404(queryset, pk=pk)
+        serializer = StreamPlatformSerializer(WatchList, context={'request': request})
+        return Response(serializer.data)
+    
 
 
 

@@ -58,6 +58,7 @@ class ReviewList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)"""
 
+    
 class StreamPlatformVS(viewsets.ViewSet):
     
     def list(self, request):
@@ -79,7 +80,18 @@ class StreamPlatformVS(viewsets.ViewSet):
         else:
             return Response(serializer.errors)
         
+    def update(self, request, pk=None):       # <-- ADD THIS
+        platform = StreamPlatform.objects.get(pk=pk)
+        serializer = StreamPlatformSerializer(platform, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         
+    def destroy(self, request, pk=None):   # <-- ADD THIS
+        platform = StreamPlatform.objects.get(pk=pk)
+        platform.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class StreamPlatformAV(APIView):
     
@@ -163,13 +175,6 @@ class WatchDetailAV(APIView):
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)    
         
-        
-    
-    
-    
-    
-                
-
 
 """@api_view(['GET','POST'])
 def movie_list(request):

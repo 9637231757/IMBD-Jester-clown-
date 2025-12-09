@@ -11,7 +11,8 @@ from rest_framework import viewsets
 #from rest_framework.decorators import api_view
 from watchlist_app.models import WatchList, StreamPlatform, Review
 from watchlist_app.api.serializers import ReviewSerializer, WatchListSerializer, StreamPlatformSerializer 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from .permissions import ReviewUserOrReadOnly  
 # custom permission 
 
 from watchlist_app.api.permissions import AdminOrReadOnly

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'watchlist_app',
     'rest_framework',
     'rest_framework.authtoken',
+    'watchmate.user_app.apps.UserAppConfig',
 ]
 
 MIDDLEWARE = [

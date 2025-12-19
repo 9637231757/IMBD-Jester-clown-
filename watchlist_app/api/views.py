@@ -22,7 +22,7 @@ from watchlist_app.api.permissions import AdminOrReadOnly, ReviewUserOrReadOnly
 class ReviewCreate(generics.ListCreateAPIView):
     #queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     
     def get_queryset(self):
@@ -65,7 +65,7 @@ class ReviewList(generics.ListAPIView):
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, ReviewUserOrReadOnly]
 
 # using generic api views and mixins
 

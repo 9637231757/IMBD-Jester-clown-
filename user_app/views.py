@@ -1,7 +1,7 @@
 #from django.shortcuts import render
 from rest_framework.decorators import api_view 
 
-from user_app.api.serializers import RegistrationSerializer  
+from user_app.api.serializers import RegestrationSerializer  
 
 
 # Create your views here.
@@ -9,7 +9,7 @@ from user_app.api.serializers import RegistrationSerializer
 def registration_view(request):
     
     if request.method == 'POST':
-         serializer = RegistrationSerializer(data=request.data)
+         serializer = RegestrationSerializer(data=request.data)
          if serializer.is_valid():
              serializer.save() 
              return serializer.data 

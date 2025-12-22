@@ -7,7 +7,7 @@ urlpatterns = [
     
     #path('admin/', admin.site.urls),
     path('login/', obtain_auth_token, name='login'),
-    path('regester/',registration_view, name='regester'),
+    path('register/',registration_view, name='register'),
     #path('api/token/', obtain_auth_token),
 
     

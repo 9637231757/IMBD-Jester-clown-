@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views import regestration_view
+from .views import registration_view
  
 urlpatterns = [
     

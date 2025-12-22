@@ -29,16 +29,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
         account.save()
         return account
         
-        """user = super().save()   
-        user.set_password(password)  
-        user.save()
-        return user"""
     
-        """account = User(
-            email=self.validated_data['email'],
-            username=self.validated_data['username']
-        )
-        account.set_password(password)
-        account.save()
-
-        return account"""

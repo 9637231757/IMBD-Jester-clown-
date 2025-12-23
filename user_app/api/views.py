@@ -18,13 +18,16 @@ def registration_view(request):
          if serializer.is_valid():
              account = serializer.save() 
              
-             data['response'] = "Regestration Sucessful!"
+             data['response'] = "Registration Sucessful!"
              data['username'] = account.username 
              data['email'] = account.email 
              
-             token = Token.objects.get(user=account).key 
-             data['token'] = token 
+             #token = Token.objects.get_or_create(user=account).key 
+             #data['token'] = token 
              
+             token, created = Token.objects.get_or_create(user=account)
+             data['token'] = token.key
+
          else: 
              data = serializer.errors
                  

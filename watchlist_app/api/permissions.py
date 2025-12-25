@@ -2,7 +2,7 @@ from rest_framework import permissions
 #from rest_framework.permissions import BasePermission, SAFE_METHODS 
 from rest_framework.permissions import IsAdminUser, SAFE_METHODS
 
-class AdminOrReadOnly(IsAdminUser): 
+class IsAdminOrReadOnly(IsAdminUser): 
     
     def has_permission(self, request, view):
         admin_permission = bool(request.user and request.user.is_staff)

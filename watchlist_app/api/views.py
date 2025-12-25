@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 #from .permissions import ReviewUserOrReadOnly  
 # custom permission 
 
-from watchlist_app.api.permissions import AdminOrReadOnly, ReviewUserOrReadOnly
+from watchlist_app.api.permissions import IsAdminOrReadOnly, ReviewUserOrReadOnly
 
 # using generic class based views
 
@@ -94,6 +94,8 @@ class StreamPlatformVS(viewsets.ViewSet):
     def list(self, request):
         queryset = StreamPlatform.objects.all()
         serializer = StreamPlatformSerializer(queryset, many=True, context={'request': request})
+        permission_classes = [IsAdminOrReadOnly]
+
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -124,6 +126,8 @@ class StreamPlatformVS(viewsets.ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class StreamPlatformAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     
     def get(self, request): 
         platform = StreamPlatform.objects.all()
@@ -139,6 +143,8 @@ class StreamPlatformAV(APIView):
             return Response(serializer.errors)
         
 class StreamPlatformDetailAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     
     def get(self, request, pk):
         try:
@@ -165,6 +171,8 @@ class StreamPlatformDetailAV(APIView):
                 
                              
 class WatchListAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     
     def get(self, request):
         movies = WatchList.objects.all()
@@ -181,7 +189,8 @@ class WatchListAV(APIView):
               
         
 class WatchDetailAV(APIView):
-    
+    permission_classes = [IsAdminOrReadOnly]
+  
     def get(self, request, pk):  
         try:
             movie = WatchList.objects.get(pk=pk) 

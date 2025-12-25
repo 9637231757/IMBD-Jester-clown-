@@ -18,7 +18,7 @@ class IsAdminOrReadOnly(IsAdminUser):
         # Allow write permissions only to admin users
         return bool(request.user and request.user.is_staff)   """
     
-class ReviewUserOrReadOnly(permissions.BasePermission):
+class IsReviewUserOrReadOnly(permissions.BasePermission):
     
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:

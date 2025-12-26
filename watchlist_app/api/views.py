@@ -54,7 +54,7 @@ class ReviewCreate(generics.ListCreateAPIView):
 class ReviewList(generics.ListAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     
     
     def get_queryset(self):
@@ -90,11 +90,13 @@ class ReviewList(mixins.ListModelMixin,
 
     
 class StreamPlatformVS(viewsets.ViewSet):
+    permission_classes = [IsAdminOrReadOnly]
+
     
     def list(self, request):
         queryset = StreamPlatform.objects.all()
         serializer = StreamPlatformSerializer(queryset, many=True, context={'request': request})
-        permission_classes = [IsAdminOrReadOnly]
+        #permission_classes = [IsAdminOrReadOnly]
 
         return Response(serializer.data)
 

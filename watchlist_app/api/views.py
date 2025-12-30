@@ -13,6 +13,7 @@ from watchlist_app.models import WatchList, StreamPlatform, Review
 from watchlist_app.api.serializers import ReviewSerializer, WatchListSerializer, StreamPlatformSerializer 
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 #from .permissions import ReviewUserOrReadOnly  
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 # custom permissions here
 
 from watchlist_app.api.permissions import IsAdminOrReadOnly, IsReviewUserOrReadOnly

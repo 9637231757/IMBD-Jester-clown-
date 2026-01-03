@@ -36,6 +36,7 @@ def registration_view(request):
              #token = Token.objects.get_or_create(user=account).key 
              #data['token'] = token 
              
+             
              token, created = Token.objects.get_or_create(user=account)
              data['token'] = token.key
 

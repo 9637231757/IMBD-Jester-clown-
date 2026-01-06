@@ -8,7 +8,7 @@ from rest_framework import status
 from user_app import models
 
 
-# Create your views here.
+# Create your views here below.
 
 @api_view(['POST',])
 def logout_view(request):
